@@ -1,0 +1,43 @@
+import React from 'react';
+
+function AdminHome({ email = '', message = '' }) {
+    
+  return (
+    <div className="about wow fadeInUp" data-wow-delay="0.1s">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-lg-5 col-md-6">
+            <div className="about-img">
+              <img src="/img/adminHome3.png" alt="Image" />
+            </div>
+          </div>
+          <div className="col-lg-7 col-md-6">
+            <div className="section-header text-left">
+              <p>{email}</p>
+              <h2>Admin Panel</h2>
+              <span style={{ color: 'red' }}>{message}</span>
+            </div>
+            <div className="about-text">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur
+                facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum,
+                viverra quis sem.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur
+                facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum,
+                viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis
+                porttitor. Aliquam interdum at lacus non blandit.
+              </p>
+              <a className="btn" href="">
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default AdminHome;
