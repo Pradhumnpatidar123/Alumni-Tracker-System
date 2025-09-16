@@ -4,6 +4,10 @@ import { message, status } from '../utils/statusMessage.js';
 import jwt from 'jsonwebtoken';
 import dotenv from "dotenv";
 import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
 dotenv.config();
 const ADMIN_SECRET=process.env.ADMIN_SECRET;
 var adminRouter=express.Router();
@@ -57,13 +61,63 @@ adminRouter.post('/adminForumUpdate',authenticateJWT,adminForumUpdateController)
 adminRouter.post('/adminDeleteForum',authenticateJWT,adminForumDeleteController);
 adminRouter.get('/adminViewAlumniStatus',adminViewAlumniStatusController);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Fixed multer configuration with absolute path
 const storage=multer.diskStorage({
-    destination:'../../ui/public/images',
+    destination: (req, file, cb) => {
+        // Use absolute path instead of relative path
+        const uploadPath = path.join(__dirname, '../../ui/public/images');
+        cb(null, uploadPath);
+    },
     filename:(request,fileObj,callback)=>{
         callback(null,new Date().getTime()+'-'+fileObj.originalname)
     }
 });
-const uploads=multer({storage:storage});
-adminRouter.post( '/adminUploadImages',uploads.fields([{name:'images',maxCount:100}]),adminUploadImagesController);
+
+// Add error handling for multer
+const uploads=multer({
+    storage:storage,
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB limit
+    }
+}).fields([{name:'images',maxCount:100}]);
+
+// Add error handling middleware for multer
+const handleMulterError = (err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        if (err.code === 'LIMIT_FILE_SIZE') {
+            return res.status(400).json({ 
+                message: 'File too large. Maximum file size is 5MB.', 
+                status: 'ERROR' 
+            });
+        }
+        if (err.code === 'LIMIT_FILE_COUNT') {
+            return res.status(400).json({ 
+                message: 'Too many files uploaded. Maximum 100 files allowed.', 
+                status: 'ERROR' 
+            });
+        }
+        return res.status(400).json({ 
+            message: 'Multer error: ' + err.message, 
+            status: 'ERROR' 
+        });
+    }
+    next(err);
+};
+
+// Apply multer middleware with error handling
+adminRouter.post('/adminUploadImages', uploads, handleMulterError, (req, res, next) => {
+    // Check if files were uploaded
+    if (!req.files) {
+        return res.status(400).json({ 
+            message: 'No files uploaded', 
+            status: 'ERROR' 
+        });
+    }
+    next();
+}, adminUploadImagesController);
+
 adminRouter.get('/adminLogout', authenticateJWT,adminLogoutController);
 export default adminRouter;

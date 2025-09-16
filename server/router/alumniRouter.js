@@ -9,7 +9,6 @@ import cookieParser from 'cookie-parser';
 dotenv.config();
 const ALUMNI_SECRET=process.env.ALUMNI_SECRET;
 const alumniRouter=express.Router();
-
 alumniRouter.use(expressFileUpload())
 alumniRouter.use(cookieParser())
 

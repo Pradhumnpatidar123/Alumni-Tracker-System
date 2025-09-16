@@ -266,23 +266,23 @@ export const adminViewAlumniStatusController = async (request, response) => {
 }
 export const adminUploadImagesController = async (request, response) => {
   try {
-    const files = request.files;
-    console.log('Upload files:', files);
+    console.log('Request files:', request.files);
     console.log('Request body:', request.body);
     
-    if (!files || !files.images) {
+    // Check if files were uploaded
+    if (!request.files || !request.files.images) {
       return response.status(400).json({
         message: 'No images uploaded',
-        status: status.ERROR
+        status: 'ERROR'
       });
     }
 
     // Handle both single file and multiple files
-    const imageFiles = Array.isArray(files.images) ? files.images : [files.images];
+    const imageFiles = Array.isArray(request.files.images) ? request.files.images : [request.files.images];
     console.log('Image files array:', imageFiles);
     
     var arrFileName = [];
-    // Start from index 0 to include all images, including single uploads
+    // Process all uploaded files
     for (var i = 0; i < imageFiles.length; i++) {
       if (imageFiles[i] && imageFiles[i].filename) {
         arrFileName.push(imageFiles[i].filename);
@@ -294,7 +294,7 @@ export const adminUploadImagesController = async (request, response) => {
     if (arrFileName.length === 0) {
       return response.status(400).json({
         message: 'No valid image files found',
-        status: status.ERROR
+        status: 'ERROR'
       });
     }
     
@@ -309,15 +309,15 @@ export const adminUploadImagesController = async (request, response) => {
     console.log('Database result:', result);
 
     response.status(200).json({
-      message: message.IMAGED_UPLOADED,
-      status: status.SUCCESS,
+      message: 'Images uploaded successfully',
+      status: 'SUCCESS',
       uploadedFiles: arrFileName.length
     });
   } catch (error) {
     console.log("error in adminUploadImagesController", error);
     response.status(500).json({
-      message: message.SOMETHING_WENT_WRONG,
-      status: status.ERROR,
+      message: 'Something went wrong during upload',
+      status: 'ERROR',
       error: error.message
     });
   }
