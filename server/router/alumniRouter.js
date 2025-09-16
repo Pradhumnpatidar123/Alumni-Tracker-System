@@ -8,12 +8,7 @@ import expressFileUpload from "express-fileupload";
 import cookieParser from 'cookie-parser';
 dotenv.config();
 const ALUMNI_SECRET=process.env.ALUMNI_SECRET;
-
-// ... existing code ...
-
 const alumniRouter=express.Router();
-
-// ... existing code ...
 
 alumniRouter.use(expressFileUpload())
 alumniRouter.use(cookieParser())
@@ -21,20 +16,12 @@ alumniRouter.use(cookieParser())
 alumniRouter.post('/alumniRegistration',alumniRegistrationController);
 alumniRouter.post('/alumniEmailVerify',alumniEmailVerifyController);
 alumniRouter.post('/alumniLogin',alumniLoginController);
-
-// ... existing code ...
-
-// ... existing code ...
-
 const authenticateJWT=(request,response,next)=>{
     try {
-        // Try to get the main alumni_jwt token first
         let token = request.cookies.alumni_jwt;
         
-        // If main token doesn't exist, try to find user-specific token
         if (!token) {
             const cookies = request.cookies;
-            // Look for any alumni_jwt_${alumniId} pattern
             for (const cookieName in cookies) {
                 if (cookieName.startsWith('alumni_jwt_')) {
                     token = cookies[cookieName];
@@ -43,7 +30,6 @@ const authenticateJWT=(request,response,next)=>{
             }
         }
         
-// ... existing code ...
         
         if (!token) {
             return response.status(401).json({

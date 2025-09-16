@@ -23,62 +23,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getIO } from '../socket/index.js';
 
-// export const alumniRegistrationController = async (request, response) => {
-//   try {
-//     console.log("alumni registration controller called");
-//     console.log(request.body);
 
-//     const __filename = fileURLToPath(import.meta.url);
-//     const __dirname = path.dirname(__filename);
-//     request.body.alumniId = uuid4();
-//     const filename = request.files.profile;
-//     const fileName = new Date().getTime() + filename.name;
-//     request.body.profile = fileName;
-//     request.body.password = await bcrypt.hash(request.body.password, 10);
-//     const pathName = path.join(
-//       __dirname.replace("\\controller", "") + "/public/document/" + fileName
-//     );
-//     // console.log(request.body);
-//     // console.log(request.files);
-//     mailer.mailer(request.body.email, (value) => {
-//       if (value) {
-//         filename.mv(pathName, async (error) => {
-//           try {
-//             const alumniRes = await alumniSchema.create(request.body);
-//             console.log("alumni result", alumniRes);
-//             // success
-//             return response.status(201).json({
-//               message: message.WAIT_FOR_ADMIN_APROVAL,
-//               status: status.SUCCESS
-//             });
-
-//           } catch (error) {
-//             console.log("error while uploading Image :", error);
-//             response.json({
-//               message: message.PROFILE_UPLOADING_ERROR,
-//               status: status.ERROR,
-//             }, { status: 500 }
-//             );
-//           }
-//         });
-//       } else {
-//         console.log();
-     
-//         response.status(400).json({
-//           message:"message.ERROR_SEND_MAIL",
-//           status: status.ERROR,
-//         });
-//       }
-//     });
-//   } catch (error) {
-//     console.log("error while alumni registration",error);
-//     response.status(500).json({
-//       message: message.SOMETHING_WENT_WRONG,
-//       status: status.ERROR,
-//     });
-    
-//   }
-// };
 export const alumniRegistrationController = async (request, response) => {
   try {
     console.log("alumni registration controller called");
