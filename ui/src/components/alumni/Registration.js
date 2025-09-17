@@ -154,104 +154,109 @@ export default function AlumniRegistration({ onSuccess }) {
   };
 
   return (
-    <div className="about wow fadeInUp" data-wow-delay="0.1s">
+    <div className="about" style={{ padding: '10px 0' }}>
       <form
         action="/alumni/alumniRegistration"
         className="form-group"
         onSubmit={handleSubmit}
         encType="multipart/form-data"
         noValidate
+        style={{ padding: '10px' }}
       >
-        <div className="container">
+        <div className="container-fluid">
           <div className="row align-items-start">
-            <div className="section-header text-left w-100">
-              <h3>Alumni Registration</h3>
-              <span className="text-primary">{serverMsg}</span>
+            <div className="section-header text-left w-100 mb-2">
+              <h5 className="mb-1">Alumni Registration</h5>
+              {serverMsg && <span className="text-primary small">{serverMsg}</span>}
             </div>
 
             {/* Left column */}
-            <div className="col-lg-6 col-md-6">
-              <div className="mb-3">
-                <label htmlFor="username" className="form-label">Username</label>
+            <div className="col-lg-6 col-md-6" style={{ padding: '0 8px' }}>
+              <div className="mb-2">
+                <label htmlFor="username" className="form-label small mb-1">Username</label>
                 <input
                   type="text"
-                  className={`form-control ${touched.username && errors.username ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.username && errors.username ? 'is-invalid' : ''}`}
                   name="username"
                   id="username"
-                  placeholder="Enter username"
+                  placeholder="Username"
                   value={formData.username}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
                   required
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
                 {touched.username && errors.username && (
-                  <div className="invalid-feedback">{errors.username}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.username}</div>
                 )}
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email</label>
+              <div className="mb-2">
+                <label htmlFor="email" className="form-label small mb-1">Email</label>
                 <input
                   type="email"
-                  className={`form-control ${touched.email && errors.email ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.email && errors.email ? 'is-invalid' : ''}`}
                   name="email"
                   id="email"
-                  placeholder="Enter Email"
+                  placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
                   required
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
                 {touched.email && errors.email && (
-                  <div className="invalid-feedback">{errors.email}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.email}</div>
                 )}
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">Password</label>
+              <div className="mb-2">
+                <label htmlFor="password" className="form-label small mb-1">Password</label>
                 <input
                   type="password"
-                  className={`form-control ${touched.password && errors.password ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.password && errors.password ? 'is-invalid' : ''}`}
                   name="password"
                   id="password"
-                  placeholder="Enter Password"
+                  placeholder="Password"
                   value={formData.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
                   required
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
                 {touched.password && errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.password}</div>
                 )}
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="contect" className="form-label">Mobile Number</label>
+              <div className="mb-2">
+                <label htmlFor="contect" className="form-label small mb-1">Mobile</label>
                 <input
                   type="text"
-                  className={`form-control ${touched.contect && errors.contect ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.contect && errors.contect ? 'is-invalid' : ''}`}
                   name="contect"
                   id="contect"
-                  placeholder="Enter 10-digit number"
+                  placeholder="10-digit number"
                   value={formData.contect}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
                   required
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
                 {touched.contect && errors.contect && (
-                  <div className="invalid-feedback">{errors.contect}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.contect}</div>
                 )}
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="dob" className="form-label">Date of Birth</label>
+              <div className="mb-2">
+                <label htmlFor="dob" className="form-label small mb-1">Date of Birth</label>
                 <input
                   type="date"
-                  className={`form-control ${touched.dob && errors.dob ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.dob && errors.dob ? 'is-invalid' : ''}`}
                   name="dob"
                   id="dob"
                   value={formData.dob}
@@ -259,15 +264,16 @@ export default function AlumniRegistration({ onSuccess }) {
                   onBlur={handleBlur}
                   disabled={submitting}
                   required
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
                 {touched.dob && errors.dob && (
-                  <div className="invalid-feedback">{errors.dob}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.dob}</div>
                 )}
               </div>
 
-              <div className="mb-3">
-                <span className="form-label d-block mb-1">Gender</span>
-                <div className="d-flex align-items-center gap-3">
+              <div className="mb-2">
+                <span className="form-label small d-block mb-1">Gender</span>
+                <div className="d-flex align-items-center gap-2">
                   <div className="form-check">
                     <input
                       className="form-check-input"
@@ -280,8 +286,9 @@ export default function AlumniRegistration({ onSuccess }) {
                       onBlur={handleBlur}
                       disabled={submitting}
                       required
+                      style={{ transform: 'scale(0.8)' }}
                     />
-                    <label className="form-check-label" htmlFor="male">Male</label>
+                    <label className="form-check-label small" htmlFor="male" style={{ fontSize: '13px' }}>Male</label>
                   </div>
                   <div className="form-check">
                     <input
@@ -295,45 +302,48 @@ export default function AlumniRegistration({ onSuccess }) {
                       onBlur={handleBlur}
                       disabled={submitting}
                       required
+                      style={{ transform: 'scale(0.8)' }}
                     />
-                    <label className="form-check-label" htmlFor="female">Female</label>
+                    <label className="form-check-label small" htmlFor="female" style={{ fontSize: '13px' }}>Female</label>
                   </div>
                 </div>
                 {touched.gender && errors.gender && (
-                  <div className="text-danger small mt-1">{errors.gender}</div>
+                  <div className="text-danger small mt-1" style={{ fontSize: '12px' }}>{errors.gender}</div>
                 )}
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="passOutYear" className="form-label">Pass Out Year</label>
+              <div className="mb-2">
+                <label htmlFor="passOutYear" className="form-label small mb-1">Pass Out Year</label>
                 <input
                   type="number"
-                  className={`form-control ${touched.passOutYear && errors.passOutYear ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.passOutYear && errors.passOutYear ? 'is-invalid' : ''}`}
                   name="passOutYear"
                   id="passOutYear"
-                  placeholder="Enter Pass Out Year"
+                  placeholder="Year"
                   value={formData.passOutYear}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
                   required
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
                 {touched.passOutYear && errors.passOutYear && (
-                  <div className="invalid-feedback">{errors.passOutYear}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.passOutYear}</div>
                 )}
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="stream" className="form-label">Stream</label>
+              <div className="mb-2">
+                <label htmlFor="stream" className="form-label small mb-1">Stream</label>
                 <select
                   name="stream"
                   id="stream"
-                  className={`form-control ${touched.stream && errors.stream ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.stream && errors.stream ? 'is-invalid' : ''}`}
                   value={formData.stream}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
                   required
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 >
                   <option value="">Select Stream</option>
                   <option value="BTech">BTech</option>
@@ -345,24 +355,25 @@ export default function AlumniRegistration({ onSuccess }) {
                   <option value="MBA">MBA</option>
                 </select>
                 {touched.stream && errors.stream && (
-                  <div className="invalid-feedback">{errors.stream}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.stream}</div>
                 )}
               </div>
             </div>
 
             {/* Right column */}
-            <div className="col-lg-6 col-md-6">
-              <div className="mb-3">
-                <label htmlFor="branch" className="form-label">Branch</label>
+            <div className="col-lg-6 col-md-6" style={{ padding: '0 8px' }}>
+              <div className="mb-2">
+                <label htmlFor="branch" className="form-label small mb-1">Branch</label>
                 <select
                   name="branch"
                   id="branch"
-                  className={`form-control ${touched.branch && errors.branch ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.branch && errors.branch ? 'is-invalid' : ''}`}
                   value={formData.branch}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
                   required
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 >
                   <option value="">Select branch</option>
                   <option value="Computer Science">Computer Science</option>
@@ -374,20 +385,21 @@ export default function AlumniRegistration({ onSuccess }) {
                   <option value="HR">HR</option>
                 </select>
                 {touched.branch && errors.branch && (
-                  <div className="invalid-feedback">{errors.branch}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.branch}</div>
                 )}
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="experience" className="form-label">Experience</label>
+              <div className="mb-2">
+                <label htmlFor="experience" className="form-label small mb-1">Experience</label>
                 <select
                   name="experience"
                   id="experience"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   value={formData.experience}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 >
                   <option value="">Select Experience</option>
                   <option value="6 Month">6 Month</option>
@@ -398,51 +410,54 @@ export default function AlumniRegistration({ onSuccess }) {
                 </select>
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="currentCompany" className="form-label">Current Company</label>
+              <div className="mb-2">
+                <label htmlFor="currentCompany" className="form-label small mb-1">Current Company</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="currentCompany"
                   id="currentCompany"
-                  placeholder="Enter Current Company"
+                  placeholder="Company"
                   value={formData.currentCompany}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="designation" className="form-label">Designation</label>
+              <div className="mb-2">
+                <label htmlFor="designation" className="form-label small mb-1">Designation</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   name="designation"
                   id="designation"
-                  placeholder="Enter Designation"
+                  placeholder="Designation"
                   value={formData.designation}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="profile" className="form-label">Upload Profile Picture</label>
+              <div className="mb-2">
+                <label htmlFor="profile" className="form-label small mb-1">Profile Picture</label>
                 <div className="row">
                   <div className="col-md-8">
                     <input
                       type="file"
-                      className="form-control"
+                      className="form-control form-control-sm"
                       name="profile"
                       id="profile"
                       accept="image/*"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       disabled={submitting}
+                      style={{ padding: '4px 8px', fontSize: '13px' }}
                     />
-                    <small className="text-muted">Accepted formats: JPG, PNG, GIF (Max 5MB)</small>
+                    <small className="text-muted" style={{ fontSize: '11px' }}>JPG, PNG, GIF (Max 5MB)</small>
                   </div>
                   <div className="col-md-4">
                     {profilePreview ? (
@@ -452,8 +467,8 @@ export default function AlumniRegistration({ onSuccess }) {
                           alt="Profile Preview" 
                           className="img-thumbnail"
                           style={{
-                            width: '80px', 
-                            height: '80px', 
+                            width: '50px', 
+                            height: '50px', 
                             objectFit: 'cover',
                             borderRadius: '50%'
                           }}
@@ -461,13 +476,14 @@ export default function AlumniRegistration({ onSuccess }) {
                         <div className="mt-1">
                           <button 
                             type="button" 
-                            className="btn btn-sm btn-outline-danger"
+                            className="btn btn-sm btn-outline-danger py-0 px-1"
                             onClick={() => {
                               setFormData(prev => ({...prev, profile: null}));
                               setProfilePreview(null);
                               document.getElementById('profile').value = '';
                             }}
                             disabled={submitting}
+                            style={{ fontSize: '11px', padding: '2px 4px' }}
                           >
                             Remove
                           </button>
@@ -477,56 +493,59 @@ export default function AlumniRegistration({ onSuccess }) {
                       <div className="text-center text-muted">
                         <div 
                           style={{
-                            width: '80px',
-                            height: '80px',
+                            width: '50px',
+                            height: '50px',
                             borderRadius: '50%',
-                            border: '2px dashed #ccc',
+                            border: '1px dashed #ccc',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             margin: '0 auto'
                           }}
                         >
-                          <i className="fas fa-user fa-2x"></i>
+                          <i className="fas fa-user fa-xs"></i>
                         </div>
-                        <small>No image selected</small>
+                        <small style={{ fontSize: '11px' }}>No image</small>
                       </div>
                     )}
                   </div>
                 </div>
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="linkedInProfileLink" className="form-label">LinkedIn Profile Link</label>
+              <div className="mb-2">
+                <label htmlFor="linkedInProfileLink" className="form-label small mb-1">LinkedIn</label>
                 <input
                   type="url"
-                  className={`form-control ${touched.linkedInProfileLink && errors.linkedInProfileLink ? 'is-invalid' : ''}`}
+                  className={`form-control form-control-sm ${touched.linkedInProfileLink && errors.linkedInProfileLink ? 'is-invalid' : ''}`}
                   name="linkedInProfileLink"
                   id="linkedInProfileLink"
-                  placeholder="Enter LinkedIn Profile Link"
+                  placeholder="LinkedIn URL"
                   value={formData.linkedInProfileLink}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={submitting}
+                  style={{ padding: '4px 8px', fontSize: '14px' }}
                 />
                 {touched.linkedInProfileLink && errors.linkedInProfileLink && (
-                  <div className="invalid-feedback">{errors.linkedInProfileLink}</div>
+                  <div className="invalid-feedback" style={{ fontSize: '12px' }}>{errors.linkedInProfileLink}</div>
                 )}
               </div>
 
-              <div className="d-grid gap-2">
+              <div className="d-grid gap-2 mt-2">
                 <button
                   type="submit"
-                  className="btn btn-warning btn-block w-100"
+                  className="btn btn-warning btn-sm w-100"
                   disabled={submitting || !isValid}
+                  style={{ padding: '5px', fontSize: '14px' }}
                 >
                   {submitting ? 'Submitting…' : 'Add Alumni'}
                 </button>
                 <button
                   type="button"
-                  className="btn btn-danger btn-block w-100"
+                  className="btn btn-danger btn-sm w-100"
                   onClick={handleReset}
                   disabled={submitting}
+                  style={{ padding: '5px', fontSize: '14px' }}
                 >
                   Reset
                 </button>
